@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <head>
+        <title>Borealis Logs Directory</title>
+        <h1>Borealis Logs Directory</h1>
+    </head>
+   <body>
+        <ul>
+            <li>
+                <a href="/Logs">Logs</a>
+            </li>
+            <li>
+                <a href="/MavrosLogs">MavrosLogs</a>
+            </li>
+            <li>
+                <a href="/Report">Report</a>
+            </li>
+        </ul>
+        <form action="/run_the_script/" method="post">
+            <button name="forwardBtn" type="submit">Generate latest logs</button>
+        </form>
+        <p> {{ latest_logs }}</p>
+        <p> {{ latest_mavros_logs }}</p>
+    </body>
+    <!-- <img class="resize" src="templates/pepe.gif">  -->
+    </html>

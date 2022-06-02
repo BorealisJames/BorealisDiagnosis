@@ -1,0 +1,12 @@
+Logs/*
+MavrosLogs/*
+Report/*
+__pycache__/*
+archive/*
+file-server-env/*
+*.pyc
+
+# exception to the rule
+!Report/upload_folder.txt
+!Logs/upload_folder.txt
+!MavrosLogs/upload_folder.txt
