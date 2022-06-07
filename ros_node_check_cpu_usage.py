@@ -134,6 +134,7 @@ _node_info = NodeInfo()
 NODE_FIELDS   = ['pid', 'get_cpu_percent', 'get_memory_percent', 'get_num_threads']
 NODE_FIELDS   = []
 
+nodes_in_a_machine = rosnode.get_nodes_by_machine()
 # print(_node_info.get_all_node_info())
 # print(_node_info.get_node_info('/rqt_gui_py_node_26408'))
 

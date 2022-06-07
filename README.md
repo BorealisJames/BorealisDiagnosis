@@ -6,4 +6,4 @@ It also contains python script to start a simple server to serve and automatical
 # Bugs 
 
 - Creating an new folder inside Logs/Mavroslogs and pressing generate latest logs (there is no check to see if files exist when generating images and report)
-- .css style sheet is commented out for noticeable performance increase
+
