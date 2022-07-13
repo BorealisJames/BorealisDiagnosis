@@ -99,6 +99,9 @@ def generate_logs():
     axis5.set_xlabel("Time (24h)")
 
     figure1.set_size_inches(10,15)
+    plt.xlabel('''Average CPU {}%,
+    Average Mem{}%'''.format(average_cpu, average_ram))
+
     figure1.savefig(new_directory + 'ping_graph.png', dpi = 200)
 
     ## wifi

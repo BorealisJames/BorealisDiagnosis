@@ -9,7 +9,7 @@ from helper_funcs import format_scandir_output
 # Each of the directory is the name of the ros node 
 # Inside each directory contains a CPU usage file and memory usage file
 
-def generate_logs():
+def generate_node_logs():
 
     # Find nodeslogs directory
     # Find the latest logs directory
@@ -48,7 +48,7 @@ def generate_logs():
                     cpu_df = cpu_df.iloc[1:,:]
                 if substring_exist_in_filename(file.name, "mem_usage.csv"):
                     mem_df = pd.read_csv(whereami + newest_directory + node_name_dir + file.name, sep= ",")
-                    mem_df = cpu_df.iloc[1:,:]
+                    mem_df = mem_df.iloc[1:,:]
             print(cpu_df)
             plt_handler = plot_cpu_mem_image(cpu_df, mem_df, new_directory, entry.name)
 
@@ -90,12 +90,13 @@ def plot_cpu_mem_image(cpu_df, ram_df, directory_to_save_them, node_name):
     axis3.set_xlabel("Time (24h)")
     axis3.legend(["CPU", "RAM"])
 
+    plt.xlabel('''Average CPU {}%,
+    Average Mem{}%'''.format(average_cpu, average_ram))
+
     # Wtf no pixel format?
     figure.set_size_inches(10,15)
     figure.savefig(directory_to_save_them + node_name + '_mem_cpu_usage_graph.png', dpi = 200)
 
-    plt.xlabel('''Average CPU {}%,
-    Average Mem{}%'''.format(average_cpu, average_ram))
     return plt
 
 def substring_exist_in_filename(file_name, substring):
@@ -105,5 +106,5 @@ def substring_exist_in_filename(file_name, substring):
         return False
 
 if __name__ == "__main__":
-    plt_handler, newest_directory = generate_logs()
-    plt_handler.show()
+    plt_handler, newest_directory = generate_node_logs()
+    # plt_handler.show()

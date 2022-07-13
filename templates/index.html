@@ -17,11 +17,22 @@
                 <a href="/Report">Report</a>
             </li>
         </ul>
-        <form action="/run_the_script/" method="post">
-            <button name="forwardBtn" type="submit">Generate latest logs</button>
+
+        <form action="/run_mavors_script/" method="post">
+            <button name="GenerateLogsBtn" type="submit">Generate latest mavros logs</button>
         </form>
+        <form action="/run_cpu_script/" method="post">
+            <button name="GenerateLogsBtn" type="submit">Generate latest cpu info logs</button>
+        </form>
+
+        <!-- <form action="/run_the_script/" method="post">
+            <button name="GenerateLogsBtn" type="submit">Generate latest node info logs</button>
+        </form> -->
+
         <p> {{ latest_logs }}</p>
         <p> {{ latest_mavros_logs }}</p>
+        <p> {{ node_logs_latest_directory }}</p>
+
     </body>
     <!-- <img class="resize" src="templates/pepe.gif">  -->
     </html>

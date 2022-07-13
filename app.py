@@ -2,6 +2,7 @@ from flask import Flask, send_file, request, render_template
 from helper_funcs import format_scandir_output
 from plot_logs import generate_logs
 from plot_mavros_logs import generate_mavros_logs
+from plot_node_stats import generate_node_logs
 import os
 
 app = Flask(__name__, static_folder="templates") # default is a folder named "static" but I changed it templates cause its a small project
@@ -22,9 +23,20 @@ def path_dir(directory_path):
         print("Sending file")
         return send_file(directory_path)
 
-@app.route("/run_the_script/", methods=['POST'])
-def move_forward():
-    print("Running the script ...")
+@app.route("/run_mavors_script/", methods=['POST'])
+def route_generate_mavros_logs():
+    print("Running the mavros script ...")
+    mavros_plt_handler, mavroslogs_latest_directory = generate_mavros_logs()
+
+    # Not used
+    mavros_plt_handler.close()
+    return render_template('index.html', latest_mavros_logs=mavroslogs_latest_directory)
+
+@app.route("/run_logs_script/", methods=['POST'])
+def route_generate_logs_logs():
+    print("Running the logs script ...")
     logs_plt_hander, logs_latest_directory = generate_logs()
-    logs_plt_hander, mavroslogs_latest_directory = generate_mavros_logs()
-    return render_template('index.html', latest_logs= logs_latest_directory, latest_mavros_logs=mavroslogs_latest_directory)
+
+    # Not used
+    logs_plt_hander.close()
+    return render_template('index.html', latest_logs= logs_latest_directory)
